@@ -12,7 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bluebirch.model.Invertor;
 import com.bluebirch.model.InvertorModel;
+import com.bluebirch.model.PDV;
+import com.bluebirch.model.Panel;
+import com.bluebirch.model.PanelModel;
+import com.bluebirch.model.Roof;
 import com.bluebirch.service.InvertorService;
+import com.bluebirch.service.PDVService;
+import com.bluebirch.service.PanelService;
+import com.bluebirch.service.RoofService;
+
 
 
 @RestController
@@ -22,6 +30,15 @@ public class AdminController {
 	@Autowired
 	InvertorService invertorService;
 	
+	@Autowired
+	PanelService panelService;
+
+	@Autowired
+	PDVService pdvService;
+
+	@Autowired
+	RoofService roofService;
+
 	@GetMapping("/hello")
 	public ResponseEntity<String> sayHello() {
 		String response = "Dejan";
@@ -51,5 +68,37 @@ public class AdminController {
 		
 		return new ResponseEntity<List<InvertorModel>>(response, HttpStatus.OK);
 	}
+
+	@GetMapping("/panels")
+	public ResponseEntity<List<Panel>> getListOfPanels()
+	{
+		List<Panel> response = panelService.getAllPanels();		
+		return new ResponseEntity<List<Panel>>(response, HttpStatus.OK);	
+	}
 	
+	@GetMapping("/panel/models")
+	public ResponseEntity<List<PanelModel>> getListOfPanelModels()
+	{
+		List<PanelModel> response = panelService.getAllPanelModels();		
+		return new ResponseEntity<List<PanelModel>>(response, HttpStatus.OK);		
+	}
+
+	@GetMapping("/panel/{id}/models")
+	public ResponseEntity<List<PanelModel>> getListOfPanelModelsByPanelId(@PathVariable Integer id)
+	{
+		List<PanelModel> response = panelService.getPanelModelsByPanelId(id);		
+		return new ResponseEntity<List<PanelModel>>(response, HttpStatus.OK);			
+	}
+
+	@GetMapping("/pdv")
+	public ResponseEntity<List<PDV>> getPDVs() {
+		List<PDV> response = pdvService.getAllPDVs();
+		return new ResponseEntity<List<PDV>>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/roofs")
+	public ResponseEntity<List<Roof>> getRoofs() {
+		List<Roof> response = roofService.getAllRoofs();
+		return new ResponseEntity<List<Roof>>(response, HttpStatus.OK);
+	}
 }

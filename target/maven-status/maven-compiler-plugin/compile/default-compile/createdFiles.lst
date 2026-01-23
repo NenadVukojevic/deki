@@ -1,0 +1,8 @@
+com\bluebirch\service\InvertorService.class
+com\bluebirch\repository\InvertorModelRepository.class
+com\bluebirch\controller\AdminController.class
+com\bluebirch\model\Invertor.class
+com\bluebirch\model\InvertorModel.class
+com\bluebirch\service\IInvertorService.class
+com\bluebirch\DekiApllication.class
+com\bluebirch\repository\InvertorRepository.class
